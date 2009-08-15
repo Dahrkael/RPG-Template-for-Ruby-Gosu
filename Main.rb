@@ -6,7 +6,7 @@ rescue LoadError
 end
 begin
 require 'lib/gosu'
-rescue
+rescue LoadError
 require 'gosu'
 end
 
