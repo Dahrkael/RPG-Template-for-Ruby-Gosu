@@ -1,4 +1,4 @@
-require 'lib/gosu'
+
 require 'Tileset.rb'
 include Gosu
 

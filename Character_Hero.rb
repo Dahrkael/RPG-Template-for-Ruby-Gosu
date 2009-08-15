@@ -1,4 +1,4 @@
-require 'lib/gosu'
+
 include Gosu
 
 class Character_Hero

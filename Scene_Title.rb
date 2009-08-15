@@ -5,7 +5,7 @@ class Scene_Title
 		@background = Image.new(window, $initial.title_background_picture, true)
 		@command_window = Window_Command.new(window, 192, $initial.title_commands, 0)
 		@command_window.x = @background.width/2 - 192/2
-		@command_window.y = 380
+		@command_window.y = 360
 		@command_window.active = true
 		@bgm = Song.new(window, $initial.title_background_music)
 		@bgm.play(true)

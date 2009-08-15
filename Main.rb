@@ -1,4 +1,14 @@
+begin
+  # In case you use Gosu via rubygems.
+  require 'rubygems'
+rescue LoadError
+  # In case you don't.
+end
+begin
 require 'lib/gosu'
+rescue
+require 'gosu'
+end
 
 require 'Initial.rb'
 require 'Temp.rb'
