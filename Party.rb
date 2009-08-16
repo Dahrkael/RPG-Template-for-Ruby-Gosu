@@ -8,6 +8,9 @@ class Party
 		@reserve_party = []
 		@gold = $initial.gold
 		@steps = 0
+		@items = {}
+		@weapons = {}
+		@armors = {}
 	end
 	
 	def setup_initial_party

@@ -20,6 +20,12 @@ class Window_Base
 		@blue2 = Color.new(255, 56,58, 110)
 		@blue3 = Color.new(255, 40, 41, 81) 
 		@blue_text = Color.new(255, 192, 224, 255)
+		
+		@green_light = Color.new(255, 0, 255, 0)
+		@green_dark = Color.new(255, 0, 100, 0)
+		@blue_light = Color.new(255, 0, 0, 255)
+		@blue_dark = Color.new(255, 0, 0, 100)
+		@black = Color.new(255, 0, 0, 0)
 	end
 	
 	def drawBox(x, y, w, h, z = 1)  
@@ -31,6 +37,29 @@ class Window_Base
 		$window.draw_quad(x + 3, y + 3, @blue1, x + w - 3, y + 3, @blue2, x + 3, y + h - 3, @blue2, x + w - 3, y + h - 3, @blue3, z) 
 	end
 	
+	def drawHPBar(i, x, y, w, h, color1, color2, z=1)  
+		# white border
+		$window.draw_quad(x, y, @white, x + w, y, @white, x, y + h, @white, x + w, y + h, @white, z)    
+		$window.draw_quad(x + 1, y + 1, @black, x + w - 1, y + 1, @black, x + 1, y + h - 1, @black, x + w - 1, y + h - 1, @black, z)   
+		# gradient
+		max_hp = $party.main_party[i].MAX_HP
+		hp = $party.main_party[i].HP
+		pre = (hp*w)/100
+		lenght = (pre * 100) / max_hp
+		$window.draw_quad(x + 1, y + 1, color1, x + lenght - 1, y + 1, color1, x + 1, y + h - 1, color2, x + lenght - 1, y + h - 1, color2, z) 
+	end
+	def drawMPBar(i, x, y, w, h, color1, color2, z=1)  
+		# white border
+		$window.draw_quad(x, y, @white, x + w, y, @white, x, y + h, @white, x + w, y + h, @white, z)    
+		$window.draw_quad(x + 1, y + 1, @black, x + w - 1, y + 1, @black, x + 1, y + h - 1, @black, x + w - 1, y + h - 1, @black, z)    
+		# gradient
+		max_mp = $party.main_party[i].MAX_MP
+		mp = $party.main_party[i].MP
+		pre = (mp*w)/100
+		lenght = (pre * 100) / max_mp
+		$window.draw_quad(x + 1, y + 1, color1, x + lenght - 1, y + 1, color1, x + 1, y + h - 1, color2, x + lenght - 1, y + h - 1, color2, z) 
+	end
+	
 	def draw_hero_graphic(i, x, y)
 		chara = $party.main_party[i].chara
 		pose = chara[0]
@@ -40,6 +69,12 @@ class Window_Base
 	def draw_hero_name(i, font, x, y)
 		name = $party.main_party[i].name
 		font.draw(name, x, y, @z)
+	end
+	
+	def draw_hero_state(i, font, x, y)
+		state = $party.main_party[i].state
+		font.draw("State: ", x, y, @z, 1, 1, @blue_text)
+		font.draw(state, x + 55, y, @z)
 	end
 	
 	def draw_hero_class(i, font, x, y)
@@ -57,15 +92,17 @@ class Window_Base
 	def draw_hero_hp(i, font, x, y)
 		hp = $party.main_party[i].HP
 		maxhp = $party.main_party[i].MAX_HP
+		self.drawHPBar(i,x+35, y, 120, 20, @green_light, @green_dark, @z)
 		font.draw("HP:", x, y, @z, 1, 1, @blue_text)
-		font.draw(hp.to_s+"/"+maxhp.to_s, x+ 35, y, @z)
+		font.draw_rel(hp.to_s+"/"+maxhp.to_s, x + 95, y, @z, 0.5, 0.0)
 	end
 	
 	def draw_hero_mp(i, font, x, y)
 		mp = $party.main_party[i].MP
 		maxmp = $party.main_party[i].MAX_MP
+		self.drawMPBar(i, x+35, y, 120, 20, @blue_light, @blue_dark, @z)
 		font.draw("MP:", x, y, @z, 1, 1, @blue_text)
-		font.draw(mp.to_s+"/"+maxmp.to_s, x+ 40, y, @z)
+		font.draw_rel(mp.to_s+"/"+maxmp.to_s, x + 95, y, @z, 0.5, 0.0)
 	end
 	
 	def draw_hero_exp(i, font, x, y)
@@ -73,8 +110,8 @@ class Window_Base
 		nxtexp = $party.main_party[i].NXT_EXP
 		font.draw("Exp:", x, y, @z, 1, 1, @blue_text)
 		font.draw(exp.to_s, x+40, y, @z)
-		font.draw("Next Lvl:", x + 140, y, @z, 1, 1, @blue_text)
-		font.draw(nxtexp.to_s, x + 230, y, @z)
+		font.draw("Next Lvl:", x + 195, y, @z, 1, 1, @blue_text)
+		font.draw(nxtexp.to_s, x + 280, y, @z)
 	end
 	
 	def draw_gold(font, x, y)

@@ -26,9 +26,9 @@ class Initial_Settings
 		@map_start = "maps/Test Map.txt"
 		@map_tileset_start = "graphics/tilesets/tileset.png"
 		@party = [Hero.new("Ryan", "Fighter", "graphics/charasets/hero.png"),
-				Hero.new("Kyle", "Mage", "graphics/charasets/npc3.png"),
-				Hero.new("Roger", "Pokemon", "graphics/charasets/npc.png"),
-				Hero.new("Lol", "ROFLer", "graphics/charasets/npc2.png")]
+				Hero.new("Mr. Unnamed", "Mage", "graphics/charasets/npc3.png"),
+				Hero.new("Sally", "NekoGirl", "graphics/charasets/npc.png"),
+				Hero.new("Little George", "Killer", "graphics/charasets/npc2.png")]
 		@gold = 100
 	end
 end

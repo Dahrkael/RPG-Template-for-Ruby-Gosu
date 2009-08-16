@@ -12,23 +12,25 @@ class Hero
 	attr_accessor :defense
 	attr_accessor :m_attack
 	attr_accessor :m_defense
+	attr_accessor :state
 	attr_accessor :EXP
 	attr_accessor :NXT_EXP
 	
-	def initialize(name, job, filename)
+	def initialize(name, job, filename, max_hp=100, max_mp=50, attack=10, defense=10, m_attack=10, m_defense=10)
 		@name = name
 		@job = job
 		@chara_filename = filename
 		@chara = nil
 		@LVL = 1
-		@HP = 100
-		@MAX_HP = 100
-		@MP = 25
-		@MAX_MP = 25
-		@attack = 10
-		@defense = 10
-		@m_attack = 10
-		@m_defense = 10
+		@MAX_HP = max_hp
+		@HP = @MAX_HP
+		@MAX_MP = max_mp
+		@MP = @MAX_MP
+		@attack = attack
+		@defense = defense
+		@m_attack = m_attack
+		@m_defense = m_defense
+		@state = "Normal"
 		@EXP = 0
 		@NXT_EXP = 100
 	end

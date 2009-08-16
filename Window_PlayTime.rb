@@ -9,20 +9,20 @@ class Window_PlayTime < Window_Base
 	end
 	
 	def adapt_time
-		if $window.hours < 10
-			@hours_display = "0" + $window.hours.to_s
+		if $window.timer.hours < 10
+			@hours_display = "0" + $window.timer.hours.to_s
 		else
-			@hours_display = $window.hours.to_s
+			@hours_display = $window.timer.hours.to_s
 		end
-		if $window.minutes < 10
-			@minutes_display = "0" + $window.minutes.to_s
+		if $window.timer.minutes < 10
+			@minutes_display = "0" + $window.timer.minutes.to_s
 		else
-			@minutes_display = $window.minutes.to_s
+			@minutes_display = $window.timer.minutes.to_s
 		end
-		if $window.seconds < 10
-			@seconds_display = "0" + $window.seconds.to_s
+		if $window.timer.seconds < 10
+			@seconds_display = "0" + $window.timer.seconds.to_s
 		else
-			@seconds_display = $window.seconds.to_s
+			@seconds_display = $window.timer.seconds.to_s
 		end
 	end
 	

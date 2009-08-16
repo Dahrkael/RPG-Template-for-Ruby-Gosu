@@ -1,7 +1,7 @@
 class Window_MenuStatus < Window_Selectable
 	
 	def initialize(window, index=0)
-		super(window,482, 473, 120, 0)
+		super(window,482, 473, 118, 0)
 		@font = Font.new(window,$initial.font_name, $initial.font_size)
 		@item_max = $party.main_party.size - 1
 	end
@@ -9,16 +9,17 @@ class Window_MenuStatus < Window_Selectable
 	def draw_characters
 		for i in 0...$party.main_party.size
 			x = self.x + 64
-			y = i * 110#120
-			draw_hero_graphic(i, x - 40, y + 30)
-			draw_hero_name(i, @font, x + 10, y + 20)
-			draw_hero_level(i, @font, x + 150, y + 20)
-			draw_hero_class(i, @font, x + 10, y + 60)
+			y = i * 120
+			draw_hero_graphic(i, x - 40, y + 50)
+			draw_hero_name(i, @font, x - 40, y + 20)
+			draw_hero_level(i, @font, x + 10, y + 60)
+			draw_hero_state(i, @font, x + 100, y + 60)
+			draw_hero_class(i, @font, x + 100, y + 20)
 			draw_hero_hp(i, @font, x + 250, y + 20)
 			draw_hero_mp(i, @font, x + 250, y + 60)
-			draw_hero_exp(i, @font, x + 10, y + 100)
+			draw_hero_exp(i, @font, x + 10, y + 90)
 			next if i == 0
-			$window.draw_line(x, y+15, 0xffffffff, x+400, y+15, 0xffffffff, @z)
+			$window.draw_line(x, y, 0xffffffff, x+400, y, 0xffffffff, @z)
 		end
 	end
 	

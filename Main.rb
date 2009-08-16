@@ -10,6 +10,8 @@ rescue LoadError
 require 'gosu'
 end
 
+require 'FPSCounter.rb'
+require 'Timer.rb'
 require 'Initial.rb'
 require 'Temp.rb'
 require 'Hero.rb'
