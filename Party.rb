@@ -13,6 +13,7 @@ class Party
 	def setup_initial_party
 		for i in $initial.party
 			@main_party.push(i)
+			i.chara = Image.load_tiles($window, i.chara_filename, 32, 48, false)
 		end
 	end
 	

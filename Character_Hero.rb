@@ -10,7 +10,7 @@ class Character_Hero
 		@x = x
 		@y = y
 		@z = 3
-		@poses = Image.load_tiles(window, $party.main_party[0].chara, 32, 48, false)
+		@poses = $party.main_party[0].chara
 		@pose = @poses[0]
 		@direccion = "standing"
 		@step = 0

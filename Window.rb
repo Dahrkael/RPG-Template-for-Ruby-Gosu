@@ -8,16 +8,15 @@ class Game_Window < Window
 	def initialize
 		super(640, 480, false)
 		self.caption = "RPG Template using Gosu"
+		@font = Font.new(self,$initial.font_name, $initial.font_size)
 		@frames_counter = 0
 		@milliseconds_before = Gosu::milliseconds
-		@font = Font.new(self,$initial.font_name, $initial.font_size)
 		@show_fps = false
 		# timer
 		@hours = 0
 		@minutes = 0
 		@seconds = 0
 		@last_time = Gosu::milliseconds()
-
 		$scene = Scene_Title.new(self)
 	end
 	

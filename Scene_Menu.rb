@@ -23,6 +23,7 @@ class Scene_Menu
 		@location_window = Window_Location.new(@window, 0, 410, 0)
 		@playtime_window = Window_PlayTime.new(@window, 0, 340, 0)
 	end
+	
 	def button_down(id)
 		if @command_window.active == true
 			@command_window.button_down(id)

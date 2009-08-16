@@ -33,8 +33,7 @@ class Window_Base
 	
 	def draw_hero_graphic(i, x, y)
 		chara = $party.main_party[i].chara
-		poses = Image.load_tiles($window, chara, 32, 48, false)
-		pose = poses[0]
+		pose = chara[0]
 		pose.draw(x, y, @z)
 	end
 	
