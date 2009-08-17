@@ -3,6 +3,7 @@ class Party
 	attr_accessor :reserve_party
 	attr_accessor :steps
 	attr_accessor :gold
+	attr_reader :items
 	def initialize
 		@main_party = []
 		@reserve_party = []
@@ -47,5 +48,19 @@ class Party
 
 	def increase_steps
 		@steps = [@steps + 1, 9999999].min
+	end
+	
+	def item_number(item_id)
+		if @items.include?(item_id)
+			return @items[item_id]
+		else
+			return 0
+		end
+	end
+	
+	def gain_item(item_id, n)
+		#if item_id > 0
+			@items[item_id] = [[item_number(item_id) + n, 0].max, 99].min
+		#end
 	end
 end

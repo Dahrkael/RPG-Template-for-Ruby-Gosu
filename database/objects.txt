@@ -1,0 +1,3 @@
+001;Potion;Recover 100 HP
+002;Key;Open a door
+003;Rock;A normal rock

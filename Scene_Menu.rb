@@ -34,6 +34,7 @@ class Scene_Menu
 				case @command_window.index
 					when 0
 					# Inventory
+					$scene = Scene_Item.new($window)
 					when 1 
 					@command_window.active = false
 					@status_window.active = true

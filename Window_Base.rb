@@ -26,6 +26,7 @@ class Window_Base
 		@blue_light = Color.new(255, 0, 0, 255)
 		@blue_dark = Color.new(255, 0, 0, 100)
 		@black = Color.new(255, 0, 0, 0)
+		@grey = Color.new(255, 50, 50, 50)
 	end
 	
 	def drawBox(x, y, w, h, z = 1)  

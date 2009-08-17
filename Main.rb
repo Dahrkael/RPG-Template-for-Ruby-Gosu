@@ -12,6 +12,7 @@ end
 
 require 'FPSCounter.rb'
 require 'Timer.rb'
+require 'Database.rb'
 require 'Initial.rb'
 require 'Temp.rb'
 require 'Hero.rb'
@@ -24,6 +25,7 @@ require 'Map.rb'
 require 'Window_Base.rb'
 require 'Window_Selectable'
 require 'Window_Command.rb'
+require 'Window_Item.rb'
 require 'Window_MenuStatus.rb'
 require 'Window_Gold.rb'
 require 'Window_Steps.rb'
@@ -32,6 +34,7 @@ require 'Window_Location.rb'
 require 'Scene_Title.rb'
 require 'Scene_Map.rb'
 require 'Scene_Menu.rb'
+require 'Scene_Item.rb'
 
 
 

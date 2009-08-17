@@ -20,6 +20,7 @@ class Scene_Title
 						Sample.new($window, $initial.accept_se).play
 						$temp = Temp.new
 						$party = Party.new
+						Database.load_items
 						$party.setup_initial_party
 						$scene = Scene_Map.new($window, $initial.map_start, $initial.map_tileset_start, $initial.player_start)
 					when 1 # Load Game
