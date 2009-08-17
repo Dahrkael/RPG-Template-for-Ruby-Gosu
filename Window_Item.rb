@@ -29,11 +29,16 @@
 		end
 		
 		def draw_items
-			@item_max = @data.size
-			for i in 0...@item_max
-				y = @y + (32 * i)  + 10
-				@font.draw(@data[i][1].to_s+" : "+$party.item_number(@data[i][0].to_i).to_s, @x + 20, y, @z + 5, 1, 1, @white)
+			if @data.size != 0
+				@item_max = @data.size
+				for i in 0...@item_max
+					y = @y + (32 * i)  + 10
+					@font.draw(@data[i][1].to_s+" : "+$party.item_number(@data[i][0].to_i).to_s, @x + 20, y, @z + 5, 1, 1, @white)
+				end
+			else 
+				@item_max = 1
 			end
+			
 		end
 		
 		def update

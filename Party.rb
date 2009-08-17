@@ -59,8 +59,6 @@ class Party
 	end
 	
 	def gain_item(item_id, n)
-		#if item_id > 0
-			@items[item_id] = [[item_number(item_id) + n, 0].max, 99].min
-		#end
+		@items[item_id] = [[item_number(item_id) + n, 0].max, 99].min
 	end
 end
