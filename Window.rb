@@ -8,7 +8,7 @@ class Game_Window < Window
 		self.caption = "RPG Template using Gosu"
 		@fpscounter = FPSCounter.new(self)
 		@timer = Timer.new(self)
-		$scene = Scene_Title.new(self)
+		$scene = Scene_Intro.new(self)
 	end
 	
 	def button_down(id)

@@ -24,7 +24,7 @@ class Scene_Map
 			$temp.actual_map = @mapa.filename
 			$temp.actual_map_tileset = @mapa.tileset_filename
 			$temp.actual_position = [@hero.x,@hero.y]
-			$scene = Scene_Menu.new($window)
+			$scene = Transition.new(Scene_Menu.new($window), :in, false)
 		end
 	end
 	

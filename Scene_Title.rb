@@ -22,7 +22,7 @@ class Scene_Title
 						$party = Party.new
 						Database.load_items
 						$party.setup_initial_party
-						$scene = Scene_Map.new($window, $initial.map_start, $initial.map_tileset_start, $initial.player_start)
+						$scene = Transition.new(Scene_Map.new($window, $initial.map_start, $initial.map_tileset_start, $initial.player_start), :in, true)
 					when 1 # Load Game
 						Sample.new($window, $initial.buzzer_se).play
 						# load game
