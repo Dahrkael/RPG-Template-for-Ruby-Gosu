@@ -1,5 +1,4 @@
 
-require 'Tileset.rb'
 include Gosu
 
 class Map

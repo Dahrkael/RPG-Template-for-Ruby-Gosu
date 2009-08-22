@@ -13,6 +13,7 @@ class Character_Hero
 		@poses = $party.main_party[0].chara
 		@pose = @poses[0]
 		@direccion = "standing"
+		@speed = 4
 		@step = 0
 		@walking = false
 	end
@@ -27,14 +28,22 @@ class Character_Hero
 		return
 	end
 		case @direccion
-		when "up"
-			@y -= 4
-		when "down"
-			@y += 4
-		when "left"
-			@x -= 4
-		when "right"
-			@x += 4
+			when 'up'
+				for i in 0...@speed
+					@y -= 1 if not $scene.solid_event_infront?(self)
+				end
+			when 'down'
+				for i in 0...@speed
+					@y += 1 if not $scene.solid_event_infront?(self)
+				end
+			when 'left'
+				for i in 0...@speed
+					@x -= 1 if not $scene.solid_event_infront?(self)
+				end
+			when 'right'
+				for i in 0...@speed
+					@x += 1 if not $scene.solid_event_infront?(self)
+				end
 		end
 		if @step >= 32
 			@step = 0

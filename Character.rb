@@ -12,18 +12,27 @@ class Character
 		@poses = Image.load_tiles(window, "graphics/charasets/"+filename, 32, 48, false)
 		@pose = @poses[0]
 		@direccion = 'standing'
+		@speed = 2
 		@step = 15
 	end
 	def walk
 		case @direccion
 			when 'up'
-				@y -= 2
+				for i in 0...@speed
+					@y -= 1 if not $scene.solid_event_infront?(self)
+				end
 			when 'down'
-				@y += 2
+				for i in 0...@speed
+					@y += 1 if not $scene.solid_event_infront?(self)
+				end
 			when 'left'
-				@x -= 2
+				for i in 0...@speed
+					@x -= 1 if not $scene.solid_event_infront?(self)
+				end
 			when 'right'
-				@x += 2
+				for i in 0...@speed
+					@x += 1 if not $scene.solid_event_infront?(self)
+				end
 		end
 		@step+=1
 		return [@x, @y]

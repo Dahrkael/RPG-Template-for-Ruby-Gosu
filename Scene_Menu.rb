@@ -47,7 +47,7 @@ class Scene_Menu
 					when 4 
 					# Save
 					when 5
-					$scene = Scene_Title.new($window)
+					$scene = Transition.new(Scene_Title.new($window), :in, false)
 				end
 			end
 		end
