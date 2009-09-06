@@ -3,15 +3,19 @@ class Character
 	attr_accessor :y
 	attr_accessor :z
 	attr_accessor :direccion
-	def initialize(window, x, y, z, filename, movement='static', face='down')
-		@x = x
-		@y = y
-		@z = z
+	attr_reader :solid
+	def initialize(window, x, y, filename, movement='static', face='down', solid=true, route='', commands='')
+		@x = (x*32)
+		@y = (y*32)-24
+		@z = 2
 		@movement_type = movement
 		@face = face
-		@poses = Image.load_tiles(window, "graphics/charasets/"+filename, 32, 48, false)
+		@poses = Image.load_tiles(window, "graphics/charasets/"+filename+".png", 32, 48, false)
 		@pose = @poses[0]
 		@direccion = 'standing'
+		@solid = solid
+		@route = route
+		@commands = commands
 		@speed = 2
 		@step = 15
 	end

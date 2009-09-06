@@ -1,0 +1,9 @@
+ First line is ignored --- To use correctly X and Y use tiles, not pixels, for example x:5 not x:176
+x:4
+y:4
+filename:npc2
+movement:static
+face:down
+solid:true
+route:
+commands:

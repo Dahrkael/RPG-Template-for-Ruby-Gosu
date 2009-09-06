@@ -4,6 +4,7 @@ include Gosu
 class Map
 	attr_reader :width
 	attr_reader :height
+	attr_reader :npcs
 	attr_reader :filename
 	attr_reader :tileset_filename
 	def initialize(window, filename, tileset)
@@ -14,6 +15,7 @@ class Map
 		@width = @data_1[1]
 		@height = @data_1[2]
 		@capa_1 = @data_1[0]
+		@npcs = @data_1[3]
 		@data_2 = Tileset::load_map(window, filename+"-2")
 		@width_2 = @data_2[1]
 		@height_2 = @data_2[2]

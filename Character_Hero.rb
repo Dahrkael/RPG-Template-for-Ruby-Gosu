@@ -7,8 +7,8 @@ class Character_Hero
 	attr_accessor :z
 	attr_accessor :direccion
 	def initialize(window, x, y)
-		@x = x
-		@y = y
+		@x = ((x-1)*32)
+		@y = ((y-1)*32)-24
 		@z = 3
 		@poses = $party.main_party[0].chara
 		@pose = @poses[0]

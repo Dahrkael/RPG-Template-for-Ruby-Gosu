@@ -22,7 +22,7 @@ class Initial_Settings
 		@move_se = "se/move.ogg"
 		@accept_se = "se/accept.ogg"
 		@buzzer_se = "se/buzzer.ogg"
-		@player_start = [400, 100]
+		@player_start = [7, 3]
 		@map_start = "maps/Test Map.txt"
 		@map_tileset_start = "graphics/tilesets/tileset.png"
 		@party = [Hero.new("Ryan", "Fighter", "graphics/charasets/hero.png"),

@@ -9,13 +9,14 @@ class Scene_Map
 		@mapa = Map.new($window, map, tileset)
 		@hero = Character_Hero.new($window, position[0], position[1])
 		@npcs = []
-		@npcs.push(Character.new($window, 500, 400, 2, "npc.png", 'random'))
-		@npcs.push(Character.new($window, 800, 400, 2, "npc.png", 'static'))
-		@npcs.push(Character.new($window, 200, 200, 2, "npc2.png", 'random'))
+		for npc in @mapa.npcs
+			x,y,filename,movement,face,solid,route,commands = *Database.load_npcs(npc)
+			@npcs.push(Character.new($window, x, y, filename, movement, face, solid, route, commands))
+		end
 		
-		@npcs.push(Character.new($window, 800, 200, 2, "npc3.png", 'static', 'left'))
-		@npcs.push(Character.new($window, 600, 300, 2, "npc3.png", 'static', 'right'))
-		@npcs.push(Character.new($window, 700, 350, 2, "npc3.png", 'static', 'up'))
+		#@npcs.push(Character.new($window, 800, 200, 2, "npc3.png", 'static', 'left'))
+		#@npcs.push(Character.new($window, 600, 300, 2, "npc3.png", 'static', 'right'))
+		#@npcs.push(Character.new($window, 700, 350, 2, "npc3.png", 'static', 'up'))
 		
 	end
 	
@@ -32,25 +33,25 @@ class Scene_Map
 		case character.direccion
 			when 'left'
 				for i in 0...@npcs.size
-					return true if @npcs[i].x == character.x - 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
+					return true if @npcs[i].solid == true and @npcs[i].x == character.x - 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
 				end
 				return true if @hero.x == character.x - 24 and character.y >= @hero.y and character.y <= @hero.y + 20
 				return false
 			when 'right'
 				for i in 0...@npcs.size
-					return true if @npcs[i].x == character.x + 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
+					return true if @npcs[i].solid == true and @npcs[i].x == character.x + 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
 				end
 				return true if @hero.x == character.x + 24 and character.y >= @hero.y - 20 and character.y <= @hero.y + 20
 				return false
 			when 'up'
 				for i in 0...@npcs.size
-					return true if @npcs[i].y == character.y - 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
+					return true if @npcs[i].solid == true and @npcs[i].y == character.y - 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
 				end
 				return true if @hero.y == character.y - 16 and character.x >= @hero.x - 20 and character.x <= @hero.x + 20
 				return false
 			when 'down'
 				for i in 0...@npcs.size
-					return true if @npcs[i].y == character.y + 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
+					return true if @npcs[i].solid == true and @npcs[i].y == character.y + 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
 				end
 				return true if @hero.y == character.y + 16 and character.x >= @hero.x - 20 and character.x <= @hero.x + 20
 				return false

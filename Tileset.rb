@@ -4,11 +4,11 @@ module Tileset
 	def self.load_map(window, filename)
 		
 		@capa = File.readlines(filename).map { |line| line.chomp }
-		@height = @capa.size
-		@width = @capa[0].size
+		@height = @capa.size - 1
+		@width = @capa[1].size
 		@tiles = Array.new(@width) do |x|
 				Array.new(@height) do |y|
-					case @capa[y][x, 1]
+					case @capa[y+1][x, 1]
 					when '0'
 						0
 					when '1'
@@ -140,7 +140,8 @@ module Tileset
 					end #case
 				end # y
 			end # x
-		@data = [@tiles, @width, @height]
+			@npcs = @capa[0].to_s.split(';')
+		@data = [@tiles, @width, @height, @npcs]
 		return @data
 	end # def
 end #module

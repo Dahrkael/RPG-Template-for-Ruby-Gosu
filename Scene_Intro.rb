@@ -22,7 +22,7 @@ class Scene_Intro
 			if @fade_time <= 0
 				@fading = :wait
 			else
-				@fade_time -= 1 # 15 is cool
+				@fade_time -= 15 # 15 is cool
 			end
 		when :wait
 			@time += 1
@@ -33,7 +33,7 @@ class Scene_Intro
 			if @fade_time >= 255
 				$scene = Transition.new(Scene_Title.new($window), :in, false)#Scene_Title.new($window)
 			else
-				@fade_time += 1 # 15 is cool
+				@fade_time += 15 # 15 is cool
 			end
 		end
 			
