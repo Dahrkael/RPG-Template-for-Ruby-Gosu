@@ -24,7 +24,7 @@ class Scene_Map
 		if id == Button::KbEscape
 			$temp.actual_map = @mapa.filename
 			$temp.actual_map_tileset = @mapa.tileset_filename
-			$temp.actual_position = [@hero.x,@hero.y]
+			$temp.actual_position = [(@hero.x/32+1),((@hero.y+24)/32+1)]
 			$scene = Transition.new(Scene_Menu.new($window), :in, false)
 		end
 	end
