@@ -4,19 +4,20 @@ class Scene_Map
 	attr_reader :screen_x
 	attr_reader :screen_y
 	def initialize(window, map, tileset, position)
+		@window = window
 		@screen_x = 0
 		@screen_y = 0
-		@mapa = Map.new($window, map, tileset)
-		@hero = Character_Hero.new($window, position[0], position[1])
+		@mapa = Map.new(@window, map, tileset)
+		@hero = Character_Hero.new(@window, position[0], position[1])
 		@npcs = []
 		for npc in @mapa.npcs
 			x,y,filename,movement,face,solid,route,commands = *Database.load_npcs(npc)
-			@npcs.push(Character.new($window, x, y, filename, movement, face, solid, route, commands))
+			@npcs.push(Character.new(@window, x, y, filename, movement, face, solid, route, commands))
 		end
 		
-		#@npcs.push(Character.new($window, 800, 200, 2, "npc3.png", 'static', 'left'))
-		#@npcs.push(Character.new($window, 600, 300, 2, "npc3.png", 'static', 'right'))
-		#@npcs.push(Character.new($window, 700, 350, 2, "npc3.png", 'static', 'up'))
+		#@npcs.push(Character.new(@window, 800, 200, 2, "npc3.png", 'static', 'left'))
+		#@npcs.push(Character.new(@window, 600, 300, 2, "npc3.png", 'static', 'right'))
+		#@npcs.push(Character.new(@window, 700, 350, 2, "npc3.png", 'static', 'up'))
 		
 	end
 	
@@ -25,7 +26,7 @@ class Scene_Map
 			$temp.actual_map = @mapa.filename
 			$temp.actual_map_tileset = @mapa.tileset_filename
 			$temp.actual_position = [(@hero.x/32+1),((@hero.y+24)/32+1)]
-			$scene = Transition.new(Scene_Menu.new($window), :in, false)
+			@window.scene = Transition.new(@window, Scene_Menu.new(@window), :in, false)
 		end
 	end
 	

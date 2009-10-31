@@ -3,8 +3,8 @@ include Gosu
 class Scene_Intro
 	def initialize(window)
 		#@font = Font.new(window, "Verdana", 18)
-		@background = Image.new(window, "graphics/gosu-splash.png", true)
 		@window = window
+		@background = Image.new(window, "graphics/gosu-splash.png", true)
 		@time = 0
 		@fading = :in
 		@fade_time = 255
@@ -31,7 +31,7 @@ class Scene_Intro
 			end
 		when :out
 			if @fade_time >= 255
-				$scene = Transition.new(Scene_Title.new($window), :in, false)#Scene_Title.new($window)
+				@window.scene = Transition.new(@window, Scene_Title.new(@window), :in, false)#Scene_Title.new(@window)
 			else
 				@fade_time += 15 # 15 is cool
 			end

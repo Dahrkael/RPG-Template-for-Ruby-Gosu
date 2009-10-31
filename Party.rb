@@ -4,10 +4,11 @@ class Party
 	attr_accessor :steps
 	attr_accessor :gold
 	attr_reader :items
-	def initialize
+	def initialize(window)
+		@window = window
 		@main_party = []
 		@reserve_party = []
-		@gold = $initial.gold
+		@gold = @window.initial.gold
 		@steps = 0
 		@items = {}
 		@weapons = {}
@@ -15,9 +16,9 @@ class Party
 	end
 	
 	def setup_initial_party
-		for i in $initial.party
+		for i in @window.initial.party
 			@main_party.push(i)
-			i.chara = Image.load_tiles($window, i.chara_filename, 32, 48, false)
+			i.chara = Image.load_tiles(@window, i.chara_filename, 32, 48, false)
 		end
 	end
 	

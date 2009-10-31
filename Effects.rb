@@ -5,7 +5,8 @@ class Transition
 	attr_reader :screen_x
 	attr_reader :screen_y
 	attr_reader :mapa
-	def initialize(scene, type, map)
+	def initialize(window, scene, type, map)
+		@window = window
 		@next_scene = scene
 		@map = map
 		@time = 0
@@ -33,13 +34,13 @@ class Transition
 			
 		when :in
 			if @fade_time <= 0
-				$scene = @next_scene
+				@window.scene = @next_scene
 			else
 				@fade_time -= 15 # 15 is cool
 			end
 		when :out
 			if @fade_time >= 255
-				$scene = @next_scene
+				@window.scene = @next_scene
 			else
 				@fade_time += 15 # 15 is cool
 			end
@@ -50,7 +51,7 @@ class Transition
 	
 	def draw
 		@next_scene.update
-		$window.draw_quad(0, 0, @color, 640, 0, @color, 0, 480, @color, 640, 480, @color, 500)   
+		@window.draw_quad(0, 0, @color, 640, 0, @color, 0, 480, @color, 640, 480, @color, 500)   
 	end
 	
 end

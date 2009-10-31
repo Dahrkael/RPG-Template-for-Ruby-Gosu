@@ -6,7 +6,7 @@
 		attr_reader :fps
 		
 		def initialize(window)
-			@font = Font.new(window,$initial.font_name, $initial.font_size)
+			@font = Font.new(window,window.initial.font_name, window.initial.font_size)
 			@frames_counter = 0
 			@milliseconds_before = Gosu::milliseconds
 			@show_fps = false

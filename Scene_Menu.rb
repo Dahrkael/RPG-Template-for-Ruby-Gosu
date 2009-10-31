@@ -28,13 +28,13 @@ class Scene_Menu
 		if @command_window.active == true
 			@command_window.button_down(id)
 			if id == Button::KbEscape
-				$scene = Transition.new(Scene_Map.new($window, $temp.actual_map, $temp.actual_map_tileset, $temp.actual_position), :in, true)
+				@window.scene = Transition.new(@window, Scene_Map.new(@window, $temp.actual_map, $temp.actual_map_tileset, $temp.actual_position), :in, true)
 			end
 			if id == Button::KbReturn 
 				case @command_window.index
 					when 0
 					# Inventory
-					$scene = Scene_Item.new($window)
+					@window.scene = Scene_Item.new(@window)
 					when 1 
 					@command_window.active = false
 					@status_window.active = true
@@ -47,7 +47,7 @@ class Scene_Menu
 					when 4 
 					# Save
 					when 5
-					$scene = Transition.new(Scene_Title.new($window), :in, false)
+					@window.scene = Transition.new(Scene_Title.new(@window), :in, false)
 				end
 			end
 		end

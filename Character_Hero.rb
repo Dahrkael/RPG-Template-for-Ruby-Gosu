@@ -22,19 +22,19 @@ class Character_Hero
 		case @direccion
 			when :up
 				for i in 0...@speed
-					@y -= 1 if not $scene.solid_event_infront?(self)
+					@y -= 1 if not @window.scene.solid_event_infront?(self)
 				end
 			when :down
 				for i in 0...@speed
-					@y += 1 if not $scene.solid_event_infront?(self)
+					@y += 1 if not @window.scene.solid_event_infront?(self)
 				end
 			when :left
 				for i in 0...@speed
-					@x -= 1 if not $scene.solid_event_infront?(self)
+					@x -= 1 if not @window.scene.solid_event_infront?(self)
 				end
 			when :right
 				for i in 0...@speed
-					@x += 1 if not $scene.solid_event_infront?(self)
+					@x += 1 if not @window.scene.solid_event_infront?(self)
 				end
 		end
 		return [@x, @y]
@@ -82,30 +82,30 @@ class Character_Hero
 					@pose = @poses[3]
 				end
 		end
-		@pose.draw(@x - $scene.screen_x,@y - $scene.screen_y, @z)
+		@pose.draw(@x - @window.scene.screen_x,@y - @window.scene.screen_y, @z)
 	end
   
 	def update
 		@x_pies = @x + (@pose.width/2)
 		@y_pies = @y + @pose.height
-		if $window.button_down?(Button::KbLeft) and @x > 0 - $scene.screen_x
+		if @window.button_down?(Button::KbLeft) and @x > 0 - @window.scene.screen_x
 			@direccion = :left
-			if not $scene.mapa.solid(@x_pies-16, @y_pies) and not $scene.solid_event_infront?(self)
+			if not @window.scene.mapa.solid(@x_pies-16, @y_pies) and not @window.scene.solid_event_infront?(self)
 				walk
 			end
-		elsif $window.button_down?(Button::KbRight) and @x < ($scene.mapa.width * 32) - @pose.width
+		elsif @window.button_down?(Button::KbRight) and @x < (@window.scene.mapa.width * 32) - @pose.width
 			@direccion = :right
-			if not $scene.mapa.solid(@x_pies+16, @y_pies) and not $scene.solid_event_infront?(self)
+			if not @window.scene.mapa.solid(@x_pies+16, @y_pies) and not @window.scene.solid_event_infront?(self)
 				walk
 			end
-		elsif $window.button_down?(Button::KbUp) and @y > 0 - $scene.screen_y
+		elsif @window.button_down?(Button::KbUp) and @y > 0 - @window.scene.screen_y
 			@direccion = :up
-			if not $scene.mapa.solid(@x_pies, @y_pies-16) and not $scene.solid_event_infront?(self)
+			if not @window.scene.mapa.solid(@x_pies, @y_pies-16) and not @window.scene.solid_event_infront?(self)
 				walk
 			end
-		elsif $window.button_down?(Button::KbDown) and @y < ($scene.mapa.height * 32) - @pose.height
+		elsif @window.button_down?(Button::KbDown) and @y < (@window.scene.mapa.height * 32) - @pose.height
 			@direccion = :down
-			if not $scene.mapa.solid(@x_pies, @y_pies+6) and not $scene.solid_event_infront?(self)
+			if not @window.scene.mapa.solid(@x_pies, @y_pies+6) and not @window.scene.solid_event_infront?(self)
 				walk
 			end
 		else 

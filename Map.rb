@@ -8,6 +8,7 @@ class Map
 	attr_reader :filename
 	attr_reader :tileset_filename
 	def initialize(window, filename, tileset)
+		@window = window
 		@filename = filename
 		@tileset_filename = tileset
 		@tileset = Image.load_tiles(window, tileset, 32, 32, true)
@@ -26,24 +27,24 @@ class Map
 		@height.times do |y|
 			@width.times do |x|
 				tile = @capa_1[x][y]
-				next if x * 32 > $scene.screen_x + 640
-				next if x * 32 < $scene.screen_x - 32
-				next if y * 32 > $scene.screen_y + 480
-				next if y * 32 < $scene.screen_y - 32
+				next if x * 32 > @window.scene.screen_x + 640
+				next if x * 32 < @window.scene.screen_x - 32
+				next if y * 32 > @window.scene.screen_y + 480
+				next if y * 32 < @window.scene.screen_y - 32
 				if tile
-					@tileset[tile].draw(x * 32 - $scene.screen_x, y * 32- $scene.screen_y, 1)
+					@tileset[tile].draw(x * 32 - @window.scene.screen_x, y * 32- @window.scene.screen_y, 1)
 				end
 			end
 		end
 		@height_2.times do |y|
 			@width_2.times do |x|
 				tile = @capa_2[x][y]
-				next if x * 32 > $scene.screen_x + 640
-				next if x * 32 < $scene.screen_x - 32
-				next if y * 32 > $scene.screen_y + 480
-				next if y * 32 < $scene.screen_y - 32
+				next if x * 32 > @window.scene.screen_x + 640
+				next if x * 32 < @window.scene.screen_x - 32
+				next if y * 32 > @window.scene.screen_y + 480
+				next if y * 32 < @window.scene.screen_y - 32
 				if tile
-					@tileset[tile].draw(x * 32 - $scene.screen_x, y * 32 - $scene.screen_y, 1)
+					@tileset[tile].draw(x * 32 - @window.scene.screen_x, y * 32 - @window.scene.screen_y, 1)
 				end
 			end
 		end

@@ -4,25 +4,26 @@ class Window_PlayTime < Window_Base
 	
 	def initialize(window, x, y, z)
 		super(window, x, y, 160, 70, 10)
-		@font = Font.new(window ,$initial.font_name, $initial.font_size)
+		@window = window
+		@font = Font.new(window ,@window.initial.font_name, @window.initial.font_size)
 		colors
 	end
 	
 	def adapt_time
-		if $window.timer.hours < 10
-			@hours_display = "0" + $window.timer.hours.to_s
+		if @window.timer.hours < 10
+			@hours_display = "0" + @window.timer.hours.to_s
 		else
-			@hours_display = $window.timer.hours.to_s
+			@hours_display = @window.timer.hours.to_s
 		end
-		if $window.timer.minutes < 10
-			@minutes_display = "0" + $window.timer.minutes.to_s
+		if @window.timer.minutes < 10
+			@minutes_display = "0" + @window.timer.minutes.to_s
 		else
-			@minutes_display = $window.timer.minutes.to_s
+			@minutes_display = @window.timer.minutes.to_s
 		end
-		if $window.timer.seconds < 10
-			@seconds_display = "0" + $window.timer.seconds.to_s
+		if @window.timer.seconds < 10
+			@seconds_display = "0" + @window.timer.seconds.to_s
 		else
-			@seconds_display = $window.timer.seconds.to_s
+			@seconds_display = @window.timer.seconds.to_s
 		end
 	end
 	

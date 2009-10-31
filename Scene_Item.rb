@@ -12,7 +12,7 @@ class Scene_Item
 		if @item_window.active == true
 			@item_window.button_down(id)
 			if id == Button::KbEscape
-				$scene = Scene_Menu.new($window)
+				@window.scene = Scene_Menu.new(@window)
 			end
 			if id == Button::KbReturn 
 				#case @item_window.index

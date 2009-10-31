@@ -3,17 +3,18 @@
 	class Window_Item < Window_Selectable
 		def initialize(window)
 			super(window,400, 473, 32, 0)
-			@font = Font.new(window,$initial.font_name, $initial.font_size)
+			@window = window
+			@font = Font.new(window,@window.initial.font_name, @window.initial.font_size)
 			load_items
 		end
 		
 		def button_down(id)
 			if id == Button::KbDown and not @index == @item_max - 1
-				Sample.new($window, $initial.move_se).play
+				Sample.new(@window, @window.initial.move_se).play
 				@index += 1
 			end				
 			if id == Button::KbUp and not @index == 0
-				Sample.new($window, $initial.move_se).play
+				Sample.new(@window, @window.initial.move_se).play
 				@index -= 1 
 			end
 		end

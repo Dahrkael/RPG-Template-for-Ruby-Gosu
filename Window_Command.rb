@@ -4,8 +4,9 @@ class Window_Command < Window_Selectable
 	
 	def initialize(window,width=192, options=[], index=0)
 		super(window, width, options.size * 32, 32, index)
+		@window = window
 		@commands = options
-		@font = Font.new(window, $initial.font_name, $initial.font_size)
+		@font = Font.new(window, @window.initial.font_name, @window.initial.font_size)
 	end
 	
 	def draw_commands
@@ -19,11 +20,11 @@ class Window_Command < Window_Selectable
 	
 	def button_down(id)
 		if id == Button::KbDown and not @index == @commands.size - 1
-			Sample.new($window, $initial.move_se).play
+			Sample.new(@window, @window.initial.move_se).play
 			@index += 1
 		end				
 		if id == Button::KbUp and not @index == 0
-			Sample.new($window, $initial.move_se).play
+			Sample.new(@window, @window.initial.move_se).play
 			@index -= 1 
 		end
 	end

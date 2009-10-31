@@ -43,6 +43,5 @@ require 'Scene_Item.rb'
 
 include Gosu
 
-$initial = Initial_Settings.new
-$window = Game_Window.new
-$window.show
+@window = Game_Window.new
+@window.show

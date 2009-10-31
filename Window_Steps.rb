@@ -4,7 +4,8 @@ class Window_Steps < Window_Base
 	
 	def initialize(window, x, y, z)
 		super(window, x, y, 160, 70, 10)
-		@font = Font.new(window ,$initial.font_name, $initial.font_size)
+		@window = window
+		@font = Font.new(window ,@window.initial.font_name, @window.initial.font_size)
 		colors
 	end
 	

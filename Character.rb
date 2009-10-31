@@ -5,6 +5,7 @@ class Character
 	attr_accessor :direccion
 	attr_reader :solid
 	def initialize(window, x, y, filename, movement=:static, face=:down, solid=true, route='', commands='')
+		@window = window
 		@x = (x*32)
 		@y = (y*32)-24
 		@z = 2
@@ -23,19 +24,19 @@ class Character
 		case @direccion
 			when :up
 				for i in 0...@speed
-					@y -= 1 if not $scene.solid_event_infront?(self)
+					@y -= 1 if not @window.scene.solid_event_infront?(self)
 				end
 			when :down
 				for i in 0...@speed
-					@y += 1 if not $scene.solid_event_infront?(self)
+					@y += 1 if not @window.scene.solid_event_infront?(self)
 				end
 			when :left
 				for i in 0...@speed
-					@x -= 1 if not $scene.solid_event_infront?(self)
+					@x -= 1 if not @window.scene.solid_event_infront?(self)
 				end
 			when :right
 				for i in 0...@speed
-					@x += 1 if not $scene.solid_event_infront?(self)
+					@x += 1 if not @window.scene.solid_event_infront?(self)
 				end
 		end
 		@step+=1
@@ -113,7 +114,7 @@ class Character
 				@pose = @poses[3]
 			end
 		end
-		@pose.draw(@x - $scene.screen_x,@y - $scene.screen_y, @z)
+		@pose.draw(@x - @window.scene.screen_x,@y - @window.scene.screen_y, @z)
 	end
   
 	def update
@@ -123,32 +124,32 @@ class Character
 			face
 			@step = 0
 		end
-			if @direccion == :left and not $scene.mapa.solid(@x_pies-16, @y_pies) and @x > 0 - $scene.screen_x and not $scene.solid_event_infront?(self)
+			if @direccion == :left and not @window.scene.mapa.solid(@x_pies-16, @y_pies) and @x > 0 - @window.scene.screen_x and not @window.scene.solid_event_infront?(self)
 				walk
-			elsif @direccion == :left and $scene.mapa.solid(@x_pies-16, @y_pies)  or $scene.solid_event_infront?(self)
+			elsif @direccion == :left and @window.scene.mapa.solid(@x_pies-16, @y_pies)  or @window.scene.solid_event_infront?(self)
 				face
-			elsif @direccion == :left and @x <= 0 - $scene.screen_x
+			elsif @direccion == :left and @x <= 0 - @window.scene.screen_x
 				face
 			end
-			if @direccion == :right and not $scene.mapa.solid(@x_pies+16, @y_pies) and @x < ($scene.mapa.width * 32) - @pose.width and not $scene.solid_event_infront?(self)
+			if @direccion == :right and not @window.scene.mapa.solid(@x_pies+16, @y_pies) and @x < (@window.scene.mapa.width * 32) - @pose.width and not @window.scene.solid_event_infront?(self)
 				walk
-			elsif @direccion == :right and $scene.mapa.solid(@x_pies+16, @y_pies)   or $scene.solid_event_infront?(self)
+			elsif @direccion == :right and @window.scene.mapa.solid(@x_pies+16, @y_pies)   or @window.scene.solid_event_infront?(self)
 				face
-			elsif @direccion == :right  and @x >= ($scene.mapa.width * 32) - @pose.width
+			elsif @direccion == :right  and @x >= (@window.scene.mapa.width * 32) - @pose.width
 				face
 			end
-			if @direccion == :up and not $scene.mapa.solid(@x_pies, @y_pies-16) and @y > 0 - $scene.screen_y and not $scene.solid_event_infront?(self)
+			if @direccion == :up and not @window.scene.mapa.solid(@x_pies, @y_pies-16) and @y > 0 - @window.scene.screen_y and not @window.scene.solid_event_infront?(self)
 				walk
-			elsif @direccion == :up and $scene.mapa.solid(@x_pies, @y_pies-16)  or $scene.solid_event_infront?(self)
+			elsif @direccion == :up and @window.scene.mapa.solid(@x_pies, @y_pies-16)  or @window.scene.solid_event_infront?(self)
 				face
-			elsif @direccion == :up and @y <= 0 - $scene.screen_y
+			elsif @direccion == :up and @y <= 0 - @window.scene.screen_y
 				face
 			end
-			if @direccion == :down and not $scene.mapa.solid(@x_pies, @y_pies+6) and @y < ($scene.mapa.height * 32) - @pose.height and not $scene.solid_event_infront?(self)
+			if @direccion == :down and not @window.scene.mapa.solid(@x_pies, @y_pies+6) and @y < (@window.scene.mapa.height * 32) - @pose.height and not @window.scene.solid_event_infront?(self)
 				walk
-			elsif @direccion == :down and $scene.mapa.solid(@x_pies, @y_pies+6)  or $scene.solid_event_infront?(self)
+			elsif @direccion == :down and @window.scene.mapa.solid(@x_pies, @y_pies+6)  or @window.scene.solid_event_infront?(self)
 				face
-			elsif @direccion == :down and @y >= ($scene.mapa.height * 32) - @pose.height
+			elsif @direccion == :down and @y >= (@window.scene.mapa.height * 32) - @pose.height
 				face
 			end
 			case @direccion
@@ -161,7 +162,7 @@ class Character
 				when :down
 					@pose = @poses[0]
 			end
-			if @x > $scene.screen_x - 32 and @x < $scene.screen_x + 640 and @y > $scene.screen_y - 32 and @y < $scene.screen_y + 480
+			if @x > @window.scene.screen_x - 32 and @x < @window.scene.screen_x + 640 and @y > @window.scene.screen_y - 32 and @y < @window.scene.screen_y + 480
 				self.draw
 			end
 	end

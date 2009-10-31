@@ -2,7 +2,8 @@ class Window_MenuStatus < Window_Selectable
 	
 	def initialize(window, index=0)
 		super(window,482, 473, 118, 0)
-		@font = Font.new(window,$initial.font_name, $initial.font_size)
+		@window = window
+		@font = Font.new(window,@window.initial.font_name, @window.initial.font_size)
 		@item_max = $party.main_party.size - 1
 	end
 	
@@ -19,17 +20,17 @@ class Window_MenuStatus < Window_Selectable
 			draw_hero_mp(i, @font, x + 250, y + 60)
 			draw_hero_exp(i, @font, x + 10, y + 90)
 			next if i == 0
-			$window.draw_line(x, y, 0xffffffff, x+400, y, 0xffffffff, @z)
+			@window.draw_line(x, y, 0xffffffff, x+400, y, 0xffffffff, @z)
 		end
 	end
 	
 	def button_down(id)
 		if id == Button::KbDown and not @index == @item_max
-			Sample.new($window, $initial.move_se).play
+			Sample.new(@window, @window.initial.move_se).play
 			@index += 1
 		end				
 		if id == Button::KbUp and not @index == 0
-			Sample.new($window, $initial.move_se).play
+			Sample.new(@window, @window.initial.move_se).play
 			@index -= 1 
 		end
 	end
