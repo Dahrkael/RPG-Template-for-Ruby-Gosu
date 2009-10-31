@@ -28,7 +28,7 @@ class Scene_Menu
 		if @command_window.active == true
 			@command_window.button_down(id)
 			if id == Button::KbEscape
-				$scene = Transition.new(Scene_Map.new($window, $temp.actual_map, $temp.actual_map_tileset,$temp.actual_position), :in, true)
+				$scene = Transition.new(Scene_Map.new($window, $temp.actual_map, $temp.actual_map_tileset, $temp.actual_position), :in, true)
 			end
 			if id == Button::KbReturn 
 				case @command_window.index

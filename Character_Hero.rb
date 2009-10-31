@@ -7,54 +7,41 @@ class Character_Hero
 	attr_accessor :z
 	attr_accessor :direccion
 	def initialize(window, x, y)
+		@window = window
 		@x = ((x-1)*32)
 		@y = ((y-1)*32)-24
 		@z = 3
 		@poses = $party.main_party[0].chara
 		@pose = @poses[0]
-		@direccion = "standing"
+		@direccion = :down
 		@speed = 4
 		@step = 0
 		@walking = false
 	end
-	def can_walk?
-		!@walking
-	end
 	def walk
-		
-		 if @step >= 32
-			@walking = false
-			@step = 0
-		return
-	end
 		case @direccion
-			when 'up'
+			when :up
 				for i in 0...@speed
 					@y -= 1 if not $scene.solid_event_infront?(self)
 				end
-			when 'down'
+			when :down
 				for i in 0...@speed
 					@y += 1 if not $scene.solid_event_infront?(self)
 				end
-			when 'left'
+			when :left
 				for i in 0...@speed
 					@x -= 1 if not $scene.solid_event_infront?(self)
 				end
-			when 'right'
+			when :right
 				for i in 0...@speed
 					@x += 1 if not $scene.solid_event_infront?(self)
 				end
-		end
-		if @step >= 32
-			@step = 0
-		else
-			@step+=1
 		end
 		return [@x, @y]
 	end
 	
 	def draw
-		if @direccion == "left"
+		if @direccion == :left and @window.button_down?(Button::KbLeft)
 			if milliseconds / 175 % 4 == 0
 				@pose = @poses[4]
 			elsif milliseconds / 175 % 4 == 1
@@ -64,7 +51,7 @@ class Character_Hero
 			elsif milliseconds / 175 % 4 == 3
 				@pose = @poses[7]
 			end
-		elsif @direccion == "right"
+		elsif @direccion == :right and @window.button_down?(Button::KbRight)
 				if milliseconds / 175 % 4 == 0
 					@pose = @poses[8]
 				elsif milliseconds / 175 % 4 == 1
@@ -74,7 +61,7 @@ class Character_Hero
 				elsif milliseconds / 175 % 4 == 3
 					@pose = @poses[11]
 				end
-		elsif @direccion == "up"
+		elsif @direccion == :up and @window.button_down?(Button::KbUp)
 			if milliseconds / 175 % 4 == 0
 					@pose = @poses[12]
 				elsif milliseconds / 175 % 4 == 1
@@ -84,7 +71,7 @@ class Character_Hero
 				elsif milliseconds / 175 % 4 == 3
 					@pose = @poses[15]
 				end
-		elsif @direccion == "down"
+		elsif @direccion == :down and @window.button_down?(Button::KbDown)
 			if milliseconds / 175 % 4 == 0
 					@pose = @poses[0]
 				elsif milliseconds / 175 % 4 == 1
@@ -102,37 +89,36 @@ class Character_Hero
 		@x_pies = @x + (@pose.width/2)
 		@y_pies = @y + @pose.height
 		if $window.button_down?(Button::KbLeft) and @x > 0 - $scene.screen_x
-			@direccion = "left"
+			@direccion = :left
 			if not $scene.mapa.solid(@x_pies-16, @y_pies) and not $scene.solid_event_infront?(self)
-				walk if can_walk?
+				walk
 			end
 		elsif $window.button_down?(Button::KbRight) and @x < ($scene.mapa.width * 32) - @pose.width
-			@direccion = "right"
+			@direccion = :right
 			if not $scene.mapa.solid(@x_pies+16, @y_pies) and not $scene.solid_event_infront?(self)
-				walk if can_walk?
+				walk
 			end
 		elsif $window.button_down?(Button::KbUp) and @y > 0 - $scene.screen_y
-			@direccion = "up"
+			@direccion = :up
 			if not $scene.mapa.solid(@x_pies, @y_pies-16) and not $scene.solid_event_infront?(self)
-				walk if can_walk?
+				walk
 			end
 		elsif $window.button_down?(Button::KbDown) and @y < ($scene.mapa.height * 32) - @pose.height
-			@direccion = "down"
+			@direccion = :down
 			if not $scene.mapa.solid(@x_pies, @y_pies+6) and not $scene.solid_event_infront?(self)
-				walk if can_walk?
+				walk
 			end
 		else 
 			case @direccion
-				when "left"
+				when :left
 					@pose = @poses[4]
-				when "right"
+				when :right
 					@pose = @poses[8]
-				when "up"
+				when :up
 					@pose = @poses[12]
-				when"down"
+				when :down
 					@pose = @poses[0]
 			end
-			@direccion = "standing"
 		end
 		self.draw
 	end

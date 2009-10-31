@@ -31,25 +31,25 @@ class Scene_Map
 	
 	def solid_event_infront?(character)
 		case character.direccion
-			when 'left'
+			when :left
 				for i in 0...@npcs.size
 					return true if @npcs[i].solid == true and @npcs[i].x == character.x - 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
 				end
 				return true if @hero.x == character.x - 24 and character.y >= @hero.y and character.y <= @hero.y + 20
 				return false
-			when 'right'
+			when :right
 				for i in 0...@npcs.size
 					return true if @npcs[i].solid == true and @npcs[i].x == character.x + 24 and character.y >= @npcs[i].y - 20 and character.y <= @npcs[i].y + 20
 				end
 				return true if @hero.x == character.x + 24 and character.y >= @hero.y - 20 and character.y <= @hero.y + 20
 				return false
-			when 'up'
+			when :up
 				for i in 0...@npcs.size
 					return true if @npcs[i].solid == true and @npcs[i].y == character.y - 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
 				end
 				return true if @hero.y == character.y - 16 and character.x >= @hero.x - 20 and character.x <= @hero.x + 20
 				return false
-			when 'down'
+			when :down
 				for i in 0...@npcs.size
 					return true if @npcs[i].solid == true and @npcs[i].y == character.y + 16 and character.x >= @npcs[i].x - 20 and character.x <= @npcs[i].x + 20
 				end
